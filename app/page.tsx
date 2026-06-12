@@ -1,106 +1,33 @@
-"use client"
+import { GlassBadge } from "@/components/glass/glass-badge"
+import { ColorSection } from "@/components/showcase/color-section"
+import { TypographySection } from "@/components/showcase/typography-section"
+import { ComponentsSection } from "@/components/showcase/components-section"
 
-import type React from "react"
-import { useState } from "react"
-import { useToast } from "@/hooks/use-toast"
-import { Toaster } from "@/components/ui/toaster"
-import { AuthCard } from "@/components/auth/auth-card"
-
-export default function AuthPage() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [password, setPassword] = useState("")
-  const [email, setEmail] = useState("")
-  const [rememberMe, setRememberMe] = useState(false)
-  const { toast } = useToast()
-
-  const validateEmail = (email: string) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-  }
-
-  const handleSignIn = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!validateEmail(email)) {
-      toast({
-        title: "Invalid email",
-        description: "Please enter a valid email address.",
-        variant: "destructive",
-      })
-      return
-    }
-
-    setIsLoading(true)
-
-    // Simulate authentication
-    setTimeout(() => {
-      setIsLoading(false)
-      toast({
-        title: "Signed in successfully!",
-        description: "Welcome back to your account.",
-      })
-    }, 1500)
-  }
-
-  const handleSignUp = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (password.length < 6) {
-      toast({
-        title: "Password too short",
-        description: "Password must be at least 6 characters long.",
-        variant: "destructive",
-      })
-      return
-    }
-
-    setIsLoading(true)
-
-    // Simulate registration
-    setTimeout(() => {
-      setIsLoading(false)
-      toast({
-        title: "Account created!",
-        description: "Your account has been created successfully.",
-      })
-    }, 1500)
-  }
-
-  const handleSocialLogin = (provider: string) => {
-    toast({
-      title: `${provider} login`,
-      description: `Redirecting to ${provider}...`,
-    })
-  }
-
-  const handleForgotPassword = () => {
-    toast({
-      title: "Reset link sent",
-      description: "Check your email for password reset instructions.",
-    })
-  }
-
+export default function DesignSystemPage() {
   return (
-    <div
-      className="min-h-screen flex items-center justify-center p-4"
-      style={{
-        background:
-          "linear-gradient(135deg, #8aa0f5 0%, #a8a5f0 35%, #c9a8e8 65%, #efb4dd 100%)",
-      }}
-    >
-      <AuthCard
-        isLoading={isLoading}
-        email={email}
-        setEmail={setEmail}
-        password={password}
-        setPassword={setPassword}
-        rememberMe={rememberMe}
-        setRememberMe={setRememberMe}
-        onSignIn={handleSignIn}
-        onSignUp={handleSignUp}
-        onSocialLogin={handleSocialLogin}
-        onForgotPassword={handleForgotPassword}
-      />
-      <Toaster />
-    </div>
+    <main className="gds-canvas min-h-screen px-4 py-16 text-[var(--gds-text)]">
+      <div className="mx-auto flex max-w-3xl flex-col gap-8">
+        <header className="text-center">
+          <GlassBadge variant="gradient" className="mb-4">
+            <span>Design System</span>
+          </GlassBadge>
+          <h1 className="text-balance text-4xl font-medium drop-shadow sm:text-5xl">
+            Aurora Glass
+          </h1>
+          <p className="mx-auto mt-3 max-w-xl text-pretty text-[var(--gds-text-muted)]">
+            A frosted-glass design system built from this project&apos;s aesthetic — soft
+            periwinkle-to-pink gradients, translucent surfaces, and Space Grotesk type.
+          </p>
+        </header>
+
+        <ColorSection />
+        <TypographySection />
+        <ComponentsSection />
+
+        <footer className="pb-4 text-center text-sm text-[var(--gds-text-subtle)]">
+          Built with reusable glass primitives · GlassCard · GlassButton · GlassInput · GlassBadge · GlassTabs
+        </footer>
+      </div>
+    </main>
   )
 }

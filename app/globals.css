@@ -78,6 +78,43 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --font-space-grotesk: "Space Grotesk", sans-serif;
+
+  /* ===== Glassmorphism Design System ===== */
+  /* Brand gradient stops */
+  --gds-grad-1: #8aa0f5;
+  --gds-grad-2: #a8a5f0;
+  --gds-grad-3: #c9a8e8;
+  --gds-grad-4: #efb4dd;
+  --gds-gradient: linear-gradient(
+    135deg,
+    var(--gds-grad-1) 0%,
+    var(--gds-grad-2) 35%,
+    var(--gds-grad-3) 65%,
+    var(--gds-grad-4) 100%
+  );
+
+  /* Glass surfaces (white tints over the gradient) */
+  --gds-surface-1: rgba(255, 255, 255, 0.1);
+  --gds-surface-2: rgba(255, 255, 255, 0.15);
+  --gds-surface-3: rgba(255, 255, 255, 0.2);
+  --gds-surface-strong: rgba(255, 255, 255, 0.4);
+  --gds-border: rgba(255, 255, 255, 0.2);
+  --gds-border-strong: rgba(255, 255, 255, 0.3);
+
+  /* On-glass text */
+  --gds-text: rgba(255, 255, 255, 1);
+  --gds-text-muted: rgba(255, 255, 255, 0.7);
+  --gds-text-subtle: rgba(255, 255, 255, 0.6);
+
+  /* Radii */
+  --gds-radius-sm: 0.75rem;
+  --gds-radius-md: 1rem;
+  --gds-radius-lg: 1.5rem;
+  --gds-radius-xl: 2rem;
+
+  /* Elevation */
+  --gds-blur: 16px;
+  --gds-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
 }
 
 .dark {
@@ -121,5 +158,44 @@
   }
   body {
     @apply bg-background text-foreground font-sans;
+  }
+}
+
+/* ===== Glassmorphism utilities ===== */
+@layer components {
+  /* The signature brand gradient backdrop */
+  .gds-canvas {
+    background: var(--gds-gradient);
+  }
+
+  /* Base frosted-glass surface */
+  .gds-glass {
+    background: var(--gds-surface-2);
+    backdrop-filter: blur(var(--gds-blur));
+    -webkit-backdrop-filter: blur(var(--gds-blur));
+    border: 1px solid var(--gds-border-strong);
+    box-shadow: var(--gds-shadow);
+  }
+
+  /* Lighter inset surface for fields / pills */
+  .gds-glass-inset {
+    background: var(--gds-surface-1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--gds-border);
+    transition: background 0.2s ease;
+  }
+  .gds-glass-inset:hover {
+    background: var(--gds-surface-3);
+  }
+
+  /* Solid gradient action surface */
+  .gds-gradient-fill {
+    background: linear-gradient(
+      to right,
+      var(--gds-grad-1),
+      var(--gds-grad-3),
+      var(--gds-grad-4)
+    );
   }
 }

@@ -10,8 +10,8 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
+  title: "Aurora Glass — Design System",
+  description: "A frosted-glass design system with soft gradients, translucent surfaces, and Space Grotesk type.",
   generator: "v0.app",
 }
 
