@@ -80,11 +80,11 @@
   --font-space-grotesk: "Space Grotesk", sans-serif;
 
   /* ===== Glassmorphism Design System ===== */
-  /* Brand gradient stops */
-  --gds-grad-1: #8aa0f5;
-  --gds-grad-2: #a8a5f0;
-  --gds-grad-3: #c9a8e8;
-  --gds-grad-4: #efb4dd;
+  /* Brand gradient stops — sampled from the "b" heart logo */
+  --gds-grad-1: #7e95f0;
+  --gds-grad-2: #a39ff0;
+  --gds-grad-3: #c6a4e6;
+  --gds-grad-4: #e8a9da;
   --gds-gradient: linear-gradient(
     135deg,
     var(--gds-grad-1) 0%,
@@ -92,6 +92,10 @@
     var(--gds-grad-3) 65%,
     var(--gds-grad-4) 100%
   );
+
+  /* Cyan-white edge glow from the logo's glassy outline */
+  --gds-edge: #d6ecff;
+  --gds-edge-glow: 0 0 0 1px rgba(214, 236, 255, 0.55), 0 0 18px rgba(214, 236, 255, 0.35);
 
   /* Glass surfaces (white tints over the gradient) */
   --gds-surface-1: rgba(255, 255, 255, 0.1);
@@ -197,5 +201,10 @@
       var(--gds-grad-3),
       var(--gds-grad-4)
     );
+  }
+
+  /* Logo-style cyan-white glassy outline for featured elements */
+  .gds-edge-glow {
+    box-shadow: var(--gds-edge-glow);
   }
 }
